@@ -1,0 +1,18 @@
+[
+  {
+    "type": "body param",
+    "name": "name",
+    "dataType": "string"
+  },
+  {
+    "type": "body param",
+    "name": "email",
+    "dataType": "string"
+  },
+  {
+    "type": "body param",
+    "name": "password",
+    "dataType": "string",
+    "minLength": 8
+  }
+]
