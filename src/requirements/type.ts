@@ -5,11 +5,11 @@ export function type(value: any, requirement: IRequirement) {
   let error = false;
 
   if (requirement.dataType == DataType.boolean) {
-    error == !value;
+    error = !value && value !== false;
   } else if (requirement.dataType == DataType.number) {
     error = isNaN(Number(value));
   } else if (requirement.dataType == DataType.string) {
-    error = !(value + "" == value);
+    error = !(value + "" == value) || Array.isArray(value);
   } else if (requirement.dataType == DataType.array) {
     let val = value;
 
