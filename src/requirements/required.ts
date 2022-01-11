@@ -11,7 +11,7 @@ export function required(value: any, requirement: IRequirement) {
     //   break;
 
     case DataType.number:
-      if (isNaN(Number(value)) || value !== 0) errorSet = true;
+      if (isNaN(Number(value))) errorSet = true;
       break;
 
     default:
