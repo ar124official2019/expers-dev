@@ -2,7 +2,7 @@ import { DataType, IRequirement, RequirementError } from "./../requirement";
 import { getError } from "./get-error";
 
 export function max(value: any, requirement: IRequirement) {
-  const m = Number(requirement.min);
+  const m = Number(requirement.max);
 
   if (requirement.dataType == DataType.number && !isNaN(m)) {
     const error = value > m;
