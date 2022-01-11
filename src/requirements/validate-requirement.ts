@@ -16,21 +16,19 @@ export function validateRequirement(requirement: IRequirement, req: Request) {
    * Extract value
    */
   switch (requirement.type) {
-    case RequirementType.bodyParam:
-      value = req.body[requirement.name];
-      break;
-
     case RequirementType.queryParam:
-      value = req.query[requirement.name];
+      const query: any = req.query || {};
+      value = query[requirement.name];
       break;
 
     case RequirementType.header:
-      value = req.get(requirement.name);
+      const get = req.get || ((_) => null);
+      value = get(requirement.name);
       break;
 
     default:
-      requirement.type = RequirementType.bodyParam;
-      value = req.body[requirement.name];
+      const body: any = req.body || {};
+      value = body[requirement.name];
       break;
   }
 
