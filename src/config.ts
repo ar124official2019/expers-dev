@@ -18,6 +18,8 @@ export default class ExpersConfig {
       value: {
         requirements: new Map(),
       },
+
+      writable: true,
     });
 
     return ExpersConfig.getConfig();
