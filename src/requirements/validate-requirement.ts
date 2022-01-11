@@ -10,7 +10,6 @@ import { required } from "./required";
 import { type } from "./type";
 
 export function validateRequirement(requirement: IRequirement, req: Request) {
-  let error;
   let value = undefined;
 
   /**
@@ -43,7 +42,7 @@ export function validateRequirement(requirement: IRequirement, req: Request) {
     { func: minLength, condidtion: requirement.minLength },
     { func: maxLength, condidtion: requirement.maxLength },
     { func: enums, condidtion: requirement.enum },
-  ]
+  ];
 
   for (const validation of validations) {
     if (!!validation.condidtion) {
