@@ -6,7 +6,7 @@ export interface IRequirement {
   max?: number;
   minLength?: number;
   maxLength?: number;
-  enum?: number;
+  enum?: any[];
 }
 
 export enum RequirementType {
