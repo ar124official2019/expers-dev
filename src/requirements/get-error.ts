@@ -52,6 +52,10 @@ export function getError(
         return null;
 
       message += `element must be one of ${JSON.stringify(attributeValue)}!`;
+      break;
+
+    default:
+      throw new Error(`No such requirement error: ${errorType}`);
   }
 
   return ExpersError.create(400, message, null);
