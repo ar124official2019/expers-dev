@@ -48,9 +48,6 @@ export function getError(
       break;
 
     case RequirementError.enum:
-      if (dataType != DataType.array || !Array.isArray(attributeValue))
-        return null;
-
       message += `element must be one of ${JSON.stringify(attributeValue)}!`;
       break;
 

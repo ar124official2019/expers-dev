@@ -24,7 +24,6 @@ export function expersRequirements(key: string): Handler {
       if (error || !requirements || !requirements.length) throw 1;
 
       // ignore invalid requirement
-      // FIXME: enum is not working at all
       requirements = requirements.filter(
         (i) => i && (i.type || i.enum) && i.name
       );

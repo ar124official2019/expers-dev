@@ -9,18 +9,18 @@ import { getError } from "./get-error";
 export function enums(value: any, requirement: IRequirement) {
   let error;
 
-  if (requirement.dataType == DataType.array) {
+  // if (requirement.dataType == DataType.array) {
     error = !requirement.enum?.includes(value);
     if (error) {
       return getError(
         requirement.type,
         requirement.name,
-        RequirementError.maxLength,
+        RequirementError.enum,
         requirement.dataType,
-        value
+        requirement.enum
       );
     }
-  }
+  // }
 
   return null;
 }
