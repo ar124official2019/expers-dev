@@ -14,5 +14,17 @@
     "name": "password",
     "dataType": "string",
     "minLength": 8
+  },
+  {
+    "type": "body param",
+    "name": "type",
+    "enum": ["admin", "regular"],
+    "minLength": 8
+  },
+  {
+    "type": "header",
+    "name": "auth_token",
+    "minLength": 12,
+    "maxLength": 14
   }
 ]

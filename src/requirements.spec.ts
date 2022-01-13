@@ -9,38 +9,4 @@ describe("requirements", () => {
   it("should create validatation middleware", () => {
     expect(getUserValidator).toBeTruthy();
   });
-
-  it("should create validation error", () => {
-    getUserValidator(
-      {
-        query: {},
-      } as any,
-      {
-        status: (code: number) => {
-          expect(code).toBe(400);
-
-          return { json: () => {} };
-        },
-      } as any,
-      () => {
-        throw "It should have already returned the response";
-      }
-    );
-  });
-
-  it("should not create validation error", () => {
-    getUserValidator(
-      {
-        query: {
-          id: 5,
-        },
-      } as any,
-      {
-        status: (code: number) => {
-          throw "It should have passed validations!";
-        },
-      } as any,
-      () => {}
-    );
-  });
 });

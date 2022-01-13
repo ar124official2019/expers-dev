@@ -1,0 +1,7 @@
+[
+  {
+    "type": "body param",
+    "name": "_id",
+    "dataType": "string"
+  }
+]
