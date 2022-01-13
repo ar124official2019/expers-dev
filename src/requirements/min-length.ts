@@ -1,11 +1,12 @@
-import { DataType, IRequirement, RequirementError } from "./../requirement";
+import { DataType, IRequirement, RequirementError, RequirementType } from "./../requirement";
 import { getError } from "./get-error";
 
 export function minLength(value: any, requirement: IRequirement) {
   const ml = Number(requirement.minLength);
 
   if (
-    (requirement.dataType == DataType.string ||
+    (requirement.type == RequirementType.header ||
+      requirement.dataType == DataType.string ||
       requirement.dataType == DataType.array) &&
     !isNaN(ml) &&
     ml > 0
