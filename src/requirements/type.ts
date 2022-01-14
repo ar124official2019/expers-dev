@@ -1,7 +1,22 @@
-import { DataType, IRequirement, RequirementError, RequirementType } from "./../requirement";
+import { ExpersResponse } from "../response";
+import {
+  DataType,
+  IRequirement,
+  RequirementError,
+  RequirementType,
+} from "../requirement";
 import { getError } from "./get-error";
 
-export function type(value: any, requirement: IRequirement) {
+/**
+ * Data type Validator
+ * @param value value to be validated
+ * @param requirement requirement object
+ * @returns ExpersResponse instance if failed, null otherwise
+ */
+export function type(
+  value: any,
+  requirement: IRequirement
+): ExpersResponse | null {
   let error = false;
 
   if (requirement.dataType == DataType.boolean) {
@@ -13,7 +28,10 @@ export function type(value: any, requirement: IRequirement) {
   } else if (requirement.dataType == DataType.array) {
     let val = value;
 
-    if (requirement.type == RequirementType.queryParam || requirement.type == RequirementType.header) {
+    if (
+      requirement.type == RequirementType.queryParam ||
+      requirement.type == RequirementType.header
+    ) {
       try {
         val = JSON.parse(value);
       } catch {

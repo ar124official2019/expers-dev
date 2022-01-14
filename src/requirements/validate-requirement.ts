@@ -1,3 +1,4 @@
+import { ExpersResponse } from "../response";
 import { Request } from "express";
 
 import { IRequirement, RequirementType } from "../requirement";
@@ -9,7 +10,16 @@ import { minLength } from "./min-length";
 import { required } from "./required";
 import { type } from "./type";
 
-export function validateRequirement(requirement: IRequirement, req: Request) {
+/**
+ * Validate given requirements on the given request
+ * @param requirement requirement object
+ * @param req ExpressJS request object
+ * @returns null if everything okay, ExpersResponse object otherwise
+ */
+export function validateRequirement(
+  requirement: IRequirement,
+  req: Request
+): ExpersResponse | null {
   let value = undefined;
 
   /**

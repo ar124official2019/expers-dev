@@ -1,7 +1,22 @@
-import { DataType, IRequirement, RequirementError, RequirementType } from "./../requirement";
+import { ExpersResponse } from "../response";
+import {
+  DataType,
+  IRequirement,
+  RequirementError,
+  RequirementType,
+} from "../requirement";
 import { getError } from "./get-error";
 
-export function minLength(value: any, requirement: IRequirement) {
+/**
+ * Minimum length Validator
+ * @param value value to be validated
+ * @param requirement requirement object
+ * @returns ExpersResponse instance if failed, null otherwise
+ */
+export function minLength(
+  value: any,
+  requirement: IRequirement
+): ExpersResponse | null {
   const ml = Number(requirement.minLength);
 
   if (

@@ -1,26 +1,29 @@
-import {
-  DataType,
-  IRequirement,
-  RequirementError,
-  RequirementType,
-} from "./../requirement";
+import { ExpersResponse } from "./../response";
+import { IRequirement, RequirementError } from "./../requirement";
 import { getError } from "./get-error";
 
-export function enums(value: any, requirement: IRequirement) {
+/**
+ * ENUM Validator
+ * @param value value to be validated
+ * @param requirement requirement object
+ * @returns ExpersResponse instance if failed, null otherwise
+ */
+export function enums(
+  value: any,
+  requirement: IRequirement
+): ExpersResponse | null {
   let error;
 
-  // if (requirement.dataType == DataType.array) {
-    error = !requirement.enum?.includes(value);
-    if (error) {
-      return getError(
-        requirement.type,
-        requirement.name,
-        RequirementError.enum,
-        requirement.dataType,
-        requirement.enum
-      );
-    }
-  // }
+  error = !requirement.enum?.includes(value);
+  if (error) {
+    return getError(
+      requirement.type,
+      requirement.name,
+      RequirementError.enum,
+      requirement.dataType,
+      requirement.enum
+    );
+  }
 
   return null;
 }
