@@ -33,7 +33,7 @@ export class ExpersResponse implements IExpersResponse {
   /**
    * Create a new error
    * Use this method to create a new status safely (instead of constructor)
-   * 
+   *
    * @param { Number } statusCode A valid HTTP Status Code,
    * invalid would result in 500 Internal Server Error response instead
    * @param { String } message A message
@@ -49,18 +49,22 @@ export class ExpersResponse implements IExpersResponse {
   /**
    * Create a new error from given ExpersError's **LIKE** object
    * Use this method to create a new status safely (instead of constructor)
-   * 
+   *
    * @param { IExpersResponse } errorObject an object of type IExpersResponse, to create ExpersResponse from.
    * Please note that `errorObject` should be truthy,
    * and its property `statusCode` (errObject.statusCode) should be a valid HTTP Status Code,
    * otherwise a 500 Internal Server Error result would be created instead
    */
   static from(errorObject: IExpersResponse) {
-    return ExpersResponse.create(
-      errorObject.statusCode,
-      errorObject.message,
-      errorObject.data
-    );
+    try {
+      return ExpersResponse.create(
+        errorObject.statusCode,
+        errorObject.message,
+        errorObject.data
+      );
+    } catch {
+      return ExpersResponse.serverError();
+    }
   }
 
   /**
