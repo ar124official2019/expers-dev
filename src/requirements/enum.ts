@@ -1,5 +1,5 @@
-import { ExpersResponse } from "./../response";
-import { IRequirement, RequirementError } from "./../requirement";
+import { ExpersResponse } from "../response";
+import { IRequirement, RequirementError } from "../requirement";
 import { getError } from "./get-error";
 
 /**

@@ -1,5 +1,5 @@
 import { ExpersResponse } from "../response";
-import { DataType } from "./../requirement";
+import { DataType } from "../requirement";
 import { RequirementType } from "../requirement";
 import { minLength } from "./min-length";
 
