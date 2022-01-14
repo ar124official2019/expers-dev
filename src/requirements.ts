@@ -4,6 +4,37 @@ import { ExpersResponse } from "./response";
 import { IRequirement } from "./requirement";
 import { validateRequirement } from "./requirements/validate-requirement";
 
+/**
+ * Get requirement validation middleware for a particular route.
+ * It should be added to handler list of the routes.
+ * Desired position would be *A*fter *parser* middlewares and *B*efore your handler function.
+ * See usage below to see how to use it properly.
+ * @param key unique key of the requirement,
+ * should correspond to the name of the file contaiting requirement defination for this route,
+ * @returns { Handler } A middleware that automatically checkes the request and validate requirements
+ * 
+ * @example
+ * ```
+ * // Suppose we've a requirement defination file existing as `create-user.json` with following content
+ * `
+ * [
+ *  {
+ *    "type": "body param",
+ *    "name": "fullName",
+ *    "dataType": "string",
+ *    "minLength": 2
+ *  }
+ * ]
+ * `
+ * 
+ * const { expersRequirements } = require('expers');
+ * app.post('/user', express.json(), expersRequirements('create-user'), async (req, res, next) => {
+ *  // You can now safely access `body` and it's `fullName`
+ *  console.log(body.fullName); // should be a valid string with a length of at least 2 character
+ *  // ... Your logic
+ * });
+ * ```
+ */
 export function expersRequirements(key: string): Handler {
   let error: number;
   let requirements: IRequirement[];

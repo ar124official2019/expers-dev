@@ -1,5 +1,6 @@
 const status = require("statuses");
 
+// interface for standard response
 export interface IExpersResponse {
   statusCode: number;
   errorCode?: string;
@@ -7,6 +8,9 @@ export interface IExpersResponse {
   data?: any;
 }
 
+/**
+ * A typical REST API response (JSON)
+ */
 export class ExpersResponse implements IExpersResponse {
   statusCode: number;
   errorCode: string;
@@ -14,7 +18,9 @@ export class ExpersResponse implements IExpersResponse {
   data: any;
 
   /**
-   * Please Do Not use constructor direcly, rather use `create` and `from` methods to safely create an object
+   * Please **Do NOT** use constructor direcly, rather use `create` and `from` methods to safely create an object.
+   *
+   * Create a new ExpersResponse (A typical API response)
    */
   constructor(statusCode: number, message: string = "", data: any = null) {
     // assert that status is a valid HTTP Status Code
@@ -27,6 +33,10 @@ export class ExpersResponse implements IExpersResponse {
   /**
    * Create a new error
    * Use this method to create a new status safely (instead of constructor)
+   * 
+   * @param { Number } statusCode A valid HTTP Status Code,
+   * invalid would result in 500 Internal Server Error response instead
+   * @param { String } message A message
    */
   static create(statusCode: number, message: string = "", data: any = null) {
     try {
@@ -39,6 +49,11 @@ export class ExpersResponse implements IExpersResponse {
   /**
    * Create a new error from given ExpersError's **LIKE** object
    * Use this method to create a new status safely (instead of constructor)
+   * 
+   * @param { IExpersResponse } errorObject an object of type IExpersResponse, to create ExpersResponse from.
+   * Please note that `errorObject` should be truthy,
+   * and its property `statusCode` (errObject.statusCode) should be a valid HTTP Status Code,
+   * otherwise a 500 Internal Server Error result would be created instead
    */
   static from(errorObject: IExpersResponse) {
     return ExpersResponse.create(
