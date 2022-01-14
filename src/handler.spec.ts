@@ -1,10 +1,10 @@
-import { ExpersError } from "./error";
+import { ExpersResponse } from "./response";
 import { expersHandler } from "./handler";
 
 describe("expersHandler middleware", () => {
   it("Should return 400 error", () => {
     expersHandler(
-      ExpersError.create(400, "Please give me something...", { body: null }),
+      ExpersResponse.create(400, "Please give me something...", { body: null }),
       null as any,
       {
         status: (code: number) => {
@@ -18,7 +18,7 @@ describe("expersHandler middleware", () => {
 
   it("Should return 500 error", () => {
     expersHandler(
-      ExpersError.create(432, "Please give me something...", { body: null }),
+      ExpersResponse.create(432, "Please give me something...", { body: null }),
       null as any,
       {
         status: (code: number) => {

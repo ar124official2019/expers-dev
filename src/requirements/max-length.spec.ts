@@ -1,4 +1,4 @@
-import { ExpersError } from "./../error";
+import { ExpersResponse } from "../response";
 import { DataType } from "./../requirement";
 import { RequirementType } from "../requirement";
 import { maxLength } from "./max-length";
@@ -12,7 +12,7 @@ describe("Validators", () => {
       maxLength: 3,
     });
 
-    expect(error).toBeInstanceOf(ExpersError);
+    expect(error).toBeInstanceOf(ExpersResponse);
   });
 
   it("should create max length error", () => {
@@ -23,7 +23,7 @@ describe("Validators", () => {
       maxLength: 1,
     });
 
-    expect(error).toBeInstanceOf(ExpersError);
+    expect(error).toBeInstanceOf(ExpersResponse);
   });
 
   it("should not create max error", () => {

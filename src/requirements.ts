@@ -1,6 +1,6 @@
 import { Handler, NextFunction, Request, Response } from "express";
 import ExpersConfig from "./config";
-import { ExpersError } from "./error";
+import { ExpersResponse } from "./response";
 import { IRequirement } from "./requirement";
 import { validateRequirement } from "./requirements/validate-requirement";
 
@@ -32,14 +32,14 @@ export function expersRequirements(key: string): Handler {
         try {
           throw validateRequirement(requirement, req);
         } catch (err) {
-          if (err instanceof ExpersError) throw err;
+          if (err instanceof ExpersResponse) throw err;
           // ignore other errors
         }
       }
 
       return next();
     } catch (err) {
-      if (err instanceof ExpersError) {
+      if (err instanceof ExpersResponse) {
         return res.status(err.statusCode).json(err);
       }
 

@@ -1,26 +1,26 @@
 const status = require("statuses");
 
-export interface IExpersError {
+export interface IExpersResponse {
   statusCode: number;
   errorCode?: string;
-  errorMessage: string;
+  message?: string;
   data?: any;
 }
 
-export class ExpersError {
+export class ExpersResponse implements IExpersResponse {
   statusCode: number;
   errorCode: string;
-  errorMessage: string;
+  message?: string;
   data: any;
 
   /**
    * Please Do Not use constructor direcly, rather use `create` and `from` methods to safely create an object
    */
-  constructor(statusCode: number, errorMessage: string, data: any = null) {
+  constructor(statusCode: number, message: string = "", data: any = null) {
     // assert that status is a valid HTTP Status Code
     this.statusCode = statusCode;
     this.errorCode = status(statusCode);
-    this.errorMessage = errorMessage;
+    this.message = message;
     this.data = data;
   }
 
@@ -28,11 +28,11 @@ export class ExpersError {
    * Create a new error
    * Use this method to create a new status safely (instead of constructor)
    */
-  static create(statusCode: number, errorMessage: string, data: any = null) {
+  static create(statusCode: number, message: string = "", data: any = null) {
     try {
-      return new ExpersError(statusCode, errorMessage, data);
+      return new ExpersResponse(statusCode, message, data);
     } catch (err) {
-      return ExpersError.serverError();
+      return ExpersResponse.serverError();
     }
   }
 
@@ -40,10 +40,10 @@ export class ExpersError {
    * Create a new error from given ExpersError's **LIKE** object
    * Use this method to create a new status safely (instead of constructor)
    */
-  static from(errorObject: IExpersError) {
-    return ExpersError.create(
+  static from(errorObject: IExpersResponse) {
+    return ExpersResponse.create(
       errorObject.statusCode,
-      errorObject.errorMessage,
+      errorObject.message,
       errorObject.data
     );
   }
@@ -53,6 +53,6 @@ export class ExpersError {
    * Use this method to create a new status safely (instead of constructor)
    */
   static serverError() {
-    return new ExpersError(500, "Internal server error!", null);
+    return new ExpersResponse(500, "Internal server error!", null);
   }
 }

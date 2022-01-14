@@ -1,4 +1,4 @@
-import { ExpersError } from "./../error";
+import { ExpersResponse } from "../response";
 import { DataType } from "./../requirement";
 import { RequirementType } from "../requirement";
 import { type } from "./type";
@@ -11,7 +11,7 @@ describe("Validators", () => {
       dataType: DataType.string,
     });
 
-    expect(error).toBeInstanceOf(ExpersError);
+    expect(error).toBeInstanceOf(ExpersResponse);
   });
 
   it("should create type error", () => {
@@ -21,7 +21,7 @@ describe("Validators", () => {
       dataType: DataType.number,
     });
 
-    expect(error).toBeInstanceOf(ExpersError);
+    expect(error).toBeInstanceOf(ExpersResponse);
   });
 
   it("should not create type error", () => {

@@ -1,5 +1,5 @@
 import { ErrorRequestHandler } from "express";
-import { ExpersError } from "./error";
+import { ExpersResponse } from "./response";
 const status = require("statuses");
 
 export const expersHandler: ErrorRequestHandler = (err, req, res, next) => {
@@ -10,12 +10,12 @@ export const expersHandler: ErrorRequestHandler = (err, req, res, next) => {
 
   try {
     if (
-      !(err instanceof ExpersError) ||
+      !(err instanceof ExpersResponse) ||
       isNaN(err.statusCode) ||
       !status(err.statusCode)
     ) throw err;
   } catch {
-    error = ExpersError.serverError();
+    error = ExpersResponse.serverError();
   }
 
   return res.status(error.statusCode).json(error);

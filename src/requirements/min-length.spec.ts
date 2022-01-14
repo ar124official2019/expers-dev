@@ -1,4 +1,4 @@
-import { ExpersError } from "./../error";
+import { ExpersResponse } from "../response";
 import { DataType } from "./../requirement";
 import { RequirementType } from "../requirement";
 import { minLength } from "./min-length";
@@ -12,7 +12,7 @@ describe("Validators", () => {
       minLength: 5,
     });
 
-    expect(error).toBeInstanceOf(ExpersError);
+    expect(error).toBeInstanceOf(ExpersResponse);
   });
 
   it("should create min length error", () => {
@@ -23,7 +23,7 @@ describe("Validators", () => {
       minLength: 3,
     });
 
-    expect(error).toBeInstanceOf(ExpersError);
+    expect(error).toBeInstanceOf(ExpersResponse);
   });
 
   it("should not create min error", () => {

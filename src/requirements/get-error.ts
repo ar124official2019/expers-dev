@@ -1,4 +1,4 @@
-import { ExpersError } from "../error";
+import { ExpersResponse } from "../response";
 import { RequirementType, RequirementError, DataType } from "../requirement";
 
 export function getError(
@@ -7,7 +7,7 @@ export function getError(
   errorType: RequirementError,
   dataType: DataType = DataType.string,
   attributeValue: any = null
-): ExpersError | null {
+): ExpersResponse | null {
   let message = `${requirementType} '${name}' `;
 
   switch (errorType) {
@@ -55,5 +55,5 @@ export function getError(
       throw new Error(`No such requirement error: ${errorType}`);
   }
 
-  return ExpersError.create(400, message, null);
+  return ExpersResponse.create(400, message, null);
 }

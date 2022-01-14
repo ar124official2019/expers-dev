@@ -1,4 +1,4 @@
-import { ExpersError } from './../error';
+import { ExpersResponse } from '../response';
 import { DataType, RequirementType } from "../requirement";
 import { validateRequirement } from "./validate-requirement";
 
@@ -13,7 +13,7 @@ describe("validateRequirements", () => {
         },
         {} as any
       )
-    ).toBeInstanceOf(ExpersError);
+    ).toBeInstanceOf(ExpersResponse);
   });
 
   it("should not create validation errors", () => {

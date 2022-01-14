@@ -1,25 +1,25 @@
-import { ExpersError } from "./error";
+import { ExpersResponse } from "./response";
 
 describe("ExpersError class", () => {
   it("Should create an instance", () => {
-    expect(new ExpersError(500, "")).toBeInstanceOf(ExpersError);
+    expect(new ExpersResponse(500, "")).toBeInstanceOf(ExpersResponse);
   });
 
   it("Should create a safe instance", () => {
     expect(
-      ExpersError.create(400, "Please give me something...", { body: null })
-    ).toBeInstanceOf(ExpersError);
+      ExpersResponse.create(400, "Please give me something...", { body: null })
+    ).toBeInstanceOf(ExpersResponse);
   });
 
   it("Should create a safe instance", () => {
     expect(
-      ExpersError.create(1, "Please give me something...", { body: null })
-    ).toBeInstanceOf(ExpersError);
+      ExpersResponse.create(1, "Please give me something...", { body: null })
+    ).toBeInstanceOf(ExpersResponse);
   });
 
   it("Should not create an instance", () => {
     expect(() => {
-      return new ExpersError(1, "Please give me something...", { body: null });
+      return new ExpersResponse(1, "Please give me something...", { body: null });
     }).toThrow();
   });
 });
