@@ -68,8 +68,7 @@ export class ExpersResponse implements IExpersResponse {
   }
 
   /**
-   * Create a new Internal Server Error from given ExpersError's **LIKE** object
-   * Use this method to create a new status safely (instead of constructor)
+   * Create a new Internal Server Error
    */
   static serverError() {
     return new ExpersResponse(500, "Internal server error!", null);
