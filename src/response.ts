@@ -74,4 +74,11 @@ export class ExpersResponse implements IExpersResponse {
   static serverError() {
     return new ExpersResponse(500, "Internal server error!", null);
   }
+
+  /**
+   * Create a new page/route Not Found error
+   */
+  static notFound() {
+    return new ExpersResponse(404, "Not found!", null);
+  }
 }
