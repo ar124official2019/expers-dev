@@ -1,6 +1,15 @@
 import { ExpersResponse } from "../response";
 import { RequirementType, RequirementError, DataType } from "../requirement";
 
+/**
+ * Get error, based on given context
+ *
+ * @param requirementType Type of the requirement
+ * @param name Name of the requirement
+ * @param errorType Type of the error occured
+ * @param dataType name of the required data type
+ * @param attributeValue value expected
+ */
 export function getError(
   requirementType: RequirementType,
   name: string,

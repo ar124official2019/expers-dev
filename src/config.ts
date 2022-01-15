@@ -1,9 +1,15 @@
 import { configName } from "./name";
 
+/**
+ * NodeJS process
+ */
 export interface ExpersProcess extends NodeJS.Process {
   "expers-config": IExpersConfig;
 }
 
+/**
+ * Type for module configuration
+ */
 export interface IExpersConfig {
   /**
    * A map of requirements (objects)
@@ -11,6 +17,9 @@ export interface IExpersConfig {
   requirements: Map<string, any>;
 }
 
+/**
+ * Class responsible for module configuration
+ */
 export default class ExpersConfig {
   /**
    * intialize Expers config
