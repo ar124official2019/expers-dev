@@ -1,9 +1,10 @@
 import { initExpers } from "../init-expers";
-import { expersRequirements } from "../requirements";
+import { expersRequirements } from "../requirement";
 
 describe("create-user", () => {
   initExpers(__dirname);
   const createUserValidator = expersRequirements("create-user");
+  const createUserValidator1 = expersRequirements("create-user-1");
 
   it("should create validatation middleware", () => {
     expect(createUserValidator).toBeTruthy();
@@ -52,6 +53,28 @@ describe("create-user", () => {
     };
 
     createUserValidator(
+      {
+        body,
+        get: () => "abcdefghijklmn", // get header
+      } as any,
+      {
+        status: (code: number) => {
+          throw "It should have passed validations!";
+        },
+      } as any,
+      () => {}
+    );
+  });
+
+  it("should not create validation error", () => {
+    const body = {
+      name: "Foo bar",
+      email: "foo@bar.baz",
+      password: "abcdefgh",
+      type: "regular",
+    };
+
+    createUserValidator1(
       {
         body,
         get: () => "abcdefghijklmn", // get header

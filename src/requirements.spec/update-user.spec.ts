@@ -1,5 +1,5 @@
 import { initExpers } from "../init-expers";
-import { expersRequirements } from "../requirements";
+import { expersRequirements } from "../requirement";
 
 describe("update-user", () => {
   initExpers(__dirname);
