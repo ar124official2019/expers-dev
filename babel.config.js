@@ -5,4 +5,9 @@ module.exports = {
         // "minify",
         "@babel/preset-typescript",
     ],
+
+    ignore: [
+        "**/*.spec.ts",
+        "./src/requirements.spec",
+    ]
 };
