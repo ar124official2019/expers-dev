@@ -30,13 +30,24 @@ export function initExpers(requirementsDirectoryPath: string) {
     for (const entry of entries) {
       if (entry.isFile() && !entry.isSymbolicLink()) {
         try {
-          const name = path.basename(entry.name, ".json");
+          let name = path.basename(entry.name, ".json");
+          if (name == entry.name) name = path.basename(entry.name, ".js");
+          if (name == entry.name) continue;
 
-          config.requirements.set(
-            name,
-            require(path.join(requirementsDirectoryPath, entry.name))
-          );
+          const requirements = require(path.join(
+            requirementsDirectoryPath,
+            entry.name
+          ));
 
+          if (!requirements || !Array.isArray(requirements)) {
+            console.warn(
+              "expers:",
+              `skipping file ${entry.name}, as it didn't export a valid array`
+            );
+            continue;
+          }
+
+          config.requirements.set(name, requirements);
           ExpersConfig.setConfig(config);
         } catch {
           console.warn("expers:", `skipping file ${entry.name}`);

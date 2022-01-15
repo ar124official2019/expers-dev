@@ -1,0 +1,5 @@
+{
+  "type": "body param",
+  "name": "name",
+  "dataType": "string"
+}
